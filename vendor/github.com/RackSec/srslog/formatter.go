@@ -56,3 +56,14 @@ func RFC5424Formatter(p Priority, hostname, tag, content string) string {
 		p, 1, timestamp, hostname, appName, pid, tag, content)
 	return msg
 }
+
+// Formatter use for LogDNA
+func LogDNAFormatter(p Priority, hostname, tag, content string) string {
+    timestamp := time.Now().Format(time.RFC3339)
+    pid := os.Getpid()
+    appName := truncateStartStr(os.Args[0], appNameMaxLength)
+    content = os.Getenv("INGESTION_KEY") + content
+    msg := fmt.Sprintf("<%d>%d %s %s %s %d %s %s",
+        	p, 1, timestamp, hostname, appName, pid, tag, content)
+    return msg
+}

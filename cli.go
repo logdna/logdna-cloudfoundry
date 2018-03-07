@@ -44,6 +44,7 @@ var (
 	logFormatterType  = kingpin.Flag("log-formatter-type", "Log formatter type to use. Valid options are text, json. If none provided, defaults to json.").Envar("LOG_FORMATTER_TYPE").String()
 	certPath          = kingpin.Flag("cert-pem-syslog", "Certificate Pem file").Envar("CERT_PEM").Default("").String()
 	ignoreMissingApps = kingpin.Flag("ignore-missing-apps", "Enable throttling on cache lookup for missing apps").Envar("IGNORE_MISSING_APPS").Default("false").Bool()
+	ingestionKey       = kingpin.Flag("ingestion-key", "use for auth").Default("").Envar("INGESTION_KEY").String()
 )
 
 const (
@@ -63,7 +64,7 @@ type CLI struct {
 func (cli *CLI) Run(args []string) int {
 	kingpin.Version(version)
 	kingpin.Parse()
-
+    os.Setenv("INGESTION_KEY", "[logdna@48950 key=\"" + *ingestionKey + "\"] ")
 	//Setup Logging
 	loggingClient := logging.NewLogging(*syslogServer, *syslogProtocol, *logFormatterType, *certPath, *debug)
 	logging.LogStd(fmt.Sprintf("Starting firehose-to-syslog %s ", version), true)

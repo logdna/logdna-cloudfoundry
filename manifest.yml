@@ -1,20 +1,16 @@
 applications:
-- name: firehose-to-syslog
+- name: firehose-to-logdna
   health-check-type: process
+  no-route: true
   env:
     GOPACKAGENAME: github.com/cloudfoundry-community/firehose-to-syslog
-    API_ENDPOINT: https://api.bosh-lite.com
     DEBUG: false
-    DOPPLER_ENDPOINT: wss://doppler.bosh-lite.com:443
-    EVENTS: LogMessage,ValueMetric,Error,ContainerMetric
-    FIREHOSE_USER: admin
-    FIREHOSE_PASSWORD: admin
-    FIREHOSE_CLIENT_ID: admin
-    FIREHOSE_CLIENT_SECRET: admin
+    EVENTS: LogMessage
     FIREHOSE_SUBSCRIPTION_ID: firehose-a
     LOG_EVENT_TOTALS: true
     LOG_EVENT_TOTALS_TIME: 10s
     SKIP_SSL_VALIDATION: true
-    SYSLOG_ENDPOINT: 10.0.0.218:5514
-    SYSLOG_PROTOCOL: tcp+tls  # tcp/udp/tcp+tls
-    CERT_PEM: cert.pem  # $ curl https://download.yourlogprovider.tld/their.crt > cert.pem
+    SYSLOG_ENDPOINT: "syslog-a.logdna.com:6514"
+    SYSLOG_PROTOCOL: tcp+tls
+    CERT_PEM: ld-root-ca.crt
+

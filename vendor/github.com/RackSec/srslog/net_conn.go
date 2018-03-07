@@ -17,7 +17,7 @@ func (n *netConn) writeString(framer Framer, formatter Formatter, p Priority, ho
 		framer = DefaultFramer
 	}
 	if formatter == nil {
-		formatter = DefaultFormatter
+		formatter = LogDNAFormatter
 	}
 	formattedMessage := framer(formatter(p, hostname, tag, msg))
 	_, err := n.conn.Write([]byte(formattedMessage))
