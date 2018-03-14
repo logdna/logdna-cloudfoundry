@@ -64,7 +64,7 @@ type CLI struct {
 func (cli *CLI) Run(args []string) int {
 	kingpin.Version(version)
 	kingpin.Parse()
-    os.Setenv("INGESTION_KEY", "[logdna@48950 key=\"" + *ingestionKey + "\"] ")
+    os.Setenv("INGESTION_KEY", "[logdna@48950 key=\"" + *ingestionKey + "\" logtype=\"cf_json\"] ")
 	//Setup Logging
 	loggingClient := logging.NewLogging(*syslogServer, *syslogProtocol, *logFormatterType, *certPath, *debug)
 	logging.LogStd(fmt.Sprintf("Starting firehose-to-syslog %s ", version), true)
