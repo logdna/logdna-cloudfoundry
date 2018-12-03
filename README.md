@@ -9,7 +9,7 @@ Currently the Nozzle only run as an app in Cloud Foundry.
 
 1 - Download the latest release of Firehose-to-Logdna.
 ```
-    $git clone https://github.com/LYHuang/firehose-to-syslog.git
+    $git clone https://github.com/logdna/logdna-cloudfoundry.git
     $cd firehose-to-syslog
 ```
 
