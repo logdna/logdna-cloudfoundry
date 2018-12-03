@@ -9,3 +9,4 @@ my.db
 start-firehose.sh
 dist
 *pprof
+.idea/
