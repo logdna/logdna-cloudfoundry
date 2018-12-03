@@ -3,6 +3,8 @@
 
 This is a Nozzle to drain log from firehose in CloudFoundry to LogDNA.
 
+Fork From: https://github.com/cloudfoundry-community/firehose-to-syslog
+
 # Usage
 
 Currently the Nozzle only run as an app in Cloud Foundry.
@@ -28,10 +30,9 @@ Currently the Nozzle only run as an app in Cloud Foundry.
     cf set-env firehose-to-logdna API_ENDPOINT https://api.[your cf system domain]
     cf set-env firehose-to-logdna DOPPLER_ENDPOINT wss://doppler.[your cf system domain]:443
     cf set-env firehose-to-logdna INGESTION_KEY [your ingestion key in LogDNA]
-    cf set-env firehose-to-logdna FIREHOSE_USER  [your doppler.firehose enabled user]
-    cf set-env firehose-to-logdna FIREHOSE_PASSWORD  [your doppler.firehose enabled user password]
     cf set-env firehose-to-logdna FIREHOSE_CLIENT_ID  [your doppler.firehose enabled client id]
     cf set-env firehose-to-logdna FIREHOSE_CLIENT_SECRET  [your doppler.firehose enabled client secret]
+    cf set-env firehose-to-logdna SYSLOG_ENDPOINT  [your syslog endpoint] (Optional)
 ```
 
 5 - Push and run.
